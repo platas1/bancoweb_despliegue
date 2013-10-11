@@ -11,17 +11,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntidadBancariaDAO {
+    
+     ConnectionFactory connectionFactory = new ConnectionFactoryImpDataSource() ; 
 
     public EntidadBancaria read(int idEntidadBancaria) throws ClassNotFoundException, SQLException {
 
         EntidadBancaria entidadBancaria;
-
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
-
+        
+        // Class.forName("com.mysql.jdbc.Driver");         
+        //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+       // DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+                
+        Connection connection= connectionFactory.getConnection();        
 
         String selectSQL = "SELECT * FROM entidadbancaria WHERE idEntidad = ?";
-        PreparedStatement preparedStatement = conexion.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+        PreparedStatement preparedStatement =connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
         preparedStatement.setInt(1, idEntidadBancaria); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -46,7 +50,7 @@ public class EntidadBancariaDAO {
             throw new RuntimeException("No existe la entidad." + idEntidadBancaria);
         }
 
-        conexion.close();
+        connection.close();
         System.out.println("Conexion creada con exito y datos mostrados.");
         return entidadBancaria;
 
@@ -54,14 +58,16 @@ public class EntidadBancariaDAO {
 
     public void insert(EntidadBancaria entidadBancaria) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+        //Class.forName("com.mysql.jdbc.Driver");
+        //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
 
+        Connection connection= connectionFactory.getConnection();   
+         
         String insertTableSQL = "INSERT INTO entidadbancaria"
                 + "(idEntidad, codigoEntidad, nombre, cif, tipoEntidadBancaria) VALUES"
                 + "(?,?,?,?,?)";
 
-        PreparedStatement preparedStatement2 = conexion.prepareStatement(insertTableSQL);
+        PreparedStatement preparedStatement2 = connection.prepareStatement(insertTableSQL);
         preparedStatement2.setInt(1, entidadBancaria.getIdEntidad());
         preparedStatement2.setString(2, entidadBancaria.getCodigoEntidad());
         preparedStatement2.setString(3, entidadBancaria.getNombre());
@@ -70,40 +76,43 @@ public class EntidadBancariaDAO {
 // execute insert SQL stetement
         preparedStatement2.executeUpdate();
 
-        conexion.close();
+        connection.close();
         System.out.println("Conexion creada con exito y datos insertados.");
 
     }
 
     public void update(EntidadBancaria entidadBancaria) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+       // Class.forName("com.mysql.jdbc.Driver");
+        //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
 
+         Connection connection= connectionFactory.getConnection();   
 
         String updateTableSQL = "UPDATE entidadbancaria SET nombre = ? WHERE identidad = ?";
-        PreparedStatement preparedStatement = conexion.prepareStatement(updateTableSQL);
+        PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
         preparedStatement.setString(1, "Santander");
         preparedStatement.setInt(2, entidadBancaria.getIdEntidad());
 // execute insert SQL stetement
         preparedStatement.executeUpdate();
 
-        conexion.close();
+        connection.close();
         System.out.println("Conexion creada con exito y datos actualizados.");
     }
 
     public void delete(int entidadBancaria) throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+        //Class.forName("com.mysql.jdbc.Driver");
+        //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
 
+         Connection connection= connectionFactory.getConnection();   
+        
         String deleteSQL = "DELETE FROM entidadbancaria WHERE idEntidad = ?";
-        PreparedStatement preparedStatement3 = conexion.prepareStatement(deleteSQL);
+        PreparedStatement preparedStatement3 = connection.prepareStatement(deleteSQL);
         preparedStatement3.setInt(1, entidadBancaria);
 // execute delete SQL stetement
         preparedStatement3.executeUpdate();
 
-        conexion.close();
+        connection.close();
         System.out.println("Conexion creada con exito");
 
     }
@@ -142,11 +151,13 @@ conexion.close();
         List<EntidadBancaria> listaEntidadesCodigo = new ArrayList();
         EntidadBancaria entidadBancaria;
 
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
+        //Class.forName("com.mysql.jdbc.Driver");
+        //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
 
+         Connection connection= connectionFactory.getConnection();   
+        
         String selectSQL = "SELECT * FROM entidadbancaria WHERE codigo = ? ";
-        PreparedStatement preparedStatement = conexion.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
         preparedStatement.setString(1, codigo); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
         ResultSet rs = preparedStatement.executeQuery();
 
@@ -161,7 +172,7 @@ conexion.close();
             listaEntidadesCodigo.add(entidadBancaria);
         }
 
-        conexion.close();
+        connection.close();
         System.out.println("Conexion creada con exito y lista de codigo creada.");
 
         return listaEntidadesCodigo;
