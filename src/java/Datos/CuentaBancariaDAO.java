@@ -1,6 +1,8 @@
 package Datos;
 
 import Negocio.CuentaBancaria;
+import Negocio.EntidadBancaria;
+import Negocio.MovimientoBancario;
 import Negocio.TipoEntidadBancaria;
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -66,17 +68,17 @@ public class CuentaBancariaDAO {
 
         Connection connection= connectionFactory.getConnection();   
          
-        String insertTableSQL = "INSERT INTO entidadbancaria"
-                + "(idEntidad, codigoEntidad, nombre, cif, tipoEntidadBancaria) VALUES"
-                + "(?,?,?,?,?)";
+        String insertTableSQL = "INSERT INTO cuentabancaria"
+                + "(idCuentaBancaria, sucursalBancaria, numeroCuenta, dc, saldo, cif) VALUES"
+                + "(?,?,?,?,?,?)";
 
         PreparedStatement preparedStatement2 = connection.prepareStatement(insertTableSQL);
         preparedStatement2.setInt(1, cuentaBancaria.getIdCuentaBancaria());
-        preparedStatement2.setString(2, cuentaBancaria.getCif());
+        preparedStatement2.setString(5, cuentaBancaria.getSucursalBancaria()); //name me da el nombre del enum
         preparedStatement2.setString(3, cuentaBancaria.getDc());
-        preparedStatement2.setString(4, cuentaBancaria.getSucursalBancaria());
-        preparedStatement2.setString(5, cuentaBancaria.getSaldo());
-        preparedStatement2.setString(6, cuentaBancaria.getTipoEntidadBancaria().name()); //name me da el nombre del enum
+        preparedStatement2.setBigDecimal(4, cuentaBancaria.getSaldo());
+        preparedStatement2.setString(2, cuentaBancaria.getCif());
+       
 // execute insert SQL stetement
         preparedStatement2.executeUpdate();
 
@@ -92,10 +94,10 @@ public class CuentaBancariaDAO {
 
          Connection connection= connectionFactory.getConnection();   
 
-        String updateTableSQL = "UPDATE entidadbancaria SET nombre = ? WHERE identidad = ?";
+        String updateTableSQL = "UPDATE cuentabancaria SET numeroCuenta = ? WHERE idCuentaBancaria = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
-        preparedStatement.setString(1, "Santander");
-        preparedStatement.setInt(2, cuentaBancaria.getIdEntidad());
+        preparedStatement.setString(1, "6969");
+        preparedStatement.setInt(2, cuentaBancaria.getIdCuentaBancaria());
 // execute insert SQL stetement
         preparedStatement.executeUpdate();
 
@@ -121,10 +123,10 @@ public class CuentaBancariaDAO {
 
     }
 
-    public List<EntidadBancaria> findAll() throws ClassNotFoundException, SQLException {
+    public List<CuentaBancaria> findAll() throws ClassNotFoundException, SQLException {
 
-        List<EntidadBancaria> listaEntidades = new ArrayList();
-        EntidadBancaria entidadBancaria;
+        List<CuentaBancaria> listaCuentas = new ArrayList();
+        CuentaBancaria cuentaBancaria;
 
        // Class.forName("com.mysql.jdbc.Driver");
        // Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
@@ -136,20 +138,20 @@ public class CuentaBancariaDAO {
         ResultSet rs = preparedStatement.executeQuery();
 
         while (rs.next()) {
-            Integer idEntidadBancaria = rs.getInt("idEntidad");
+            Integer idCuentaBancaria = rs.getInt("idEntidad");
             String codigoEntidad = rs.getString("codigoEntidad");
             String nombre = rs.getString("nombre");
             String cif = rs.getString("cif");
             String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
 
-            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
-            listaEntidades.add(entidadBancaria);
+            cuentaBancaria = new CuentaBancaria(idCuentaBancaria, null, cif, BigDecimal.ZERO, cif);
+            listaCuentas.add(cuentaBancaria);
 
             
             System.out.println("Conexion creada con exito y lista guardada.");
         }
 connection.close();
-        return listaEntidades;
+        return listaCuentas;
     }
 
     public List<EntidadBancaria> findByCodigo(String codigo) throws ClassNotFoundException, SQLException {
@@ -183,13 +185,4 @@ connection.close();
 
         return listaEntidadesCodigo;
     }
-}
-    
-    
-    
-    
-    
-    
-    
-    
 }
