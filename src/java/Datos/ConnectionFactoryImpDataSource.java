@@ -1,29 +1,17 @@
 package Datos;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class ConnectionFactoryImpDataSource implements ConnectionFactory{
-
+ 
   
-    public Connection getConnection() throws Exception{
-   
-   Context initContext = new InitialContext();
-   
-   Context envContext  = (Context)initContext.lookup("java:/comp/env");
-   DataSource datasource = (DataSource)envContext.lookup("jdbc/banco");
-   
-   Connection con = datasource.getConnection(); 
-      
-   return con;
-   
-    }
-    
-}
-
-/*
   @Override
   public Connection getConnection() {
    
@@ -62,4 +50,21 @@ public class ConnectionFactoryImpDataSource implements ConnectionFactory{
     }
     
 }
-*/
+
+/* 
+ *     public Connection getConnection() throws Exception{
+   
+   Context initContext = new InitialContext();
+   
+   Context envContext  = (Context)initContext.lookup("java:/comp/env");
+   DataSource datasource = (DataSource)envContext.lookup("jdbc/banco");
+   
+   Connection con = datasource.getConnection(); 
+      
+   return con;
+   
+    }
+    
+}
+ 
+ */

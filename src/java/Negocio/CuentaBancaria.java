@@ -10,13 +10,13 @@ public class CuentaBancaria {
     
     private int idCuentaBancaria;
     private SucursalBancaria sucursalBancaria;
-    private int dc;
+    private String dc;
     private BigDecimal saldo;
-    private int cif;
+    private String cif;
     private List<MovimientoBancario> movimientoBancarios=new ArrayList();
 
     
-    public CuentaBancaria(int idCuentaBancaria, SucursalBancaria sucursalBancaria, int dc, BigDecimal saldo, int cif) {
+    public CuentaBancaria(int idCuentaBancaria, SucursalBancaria sucursalBancaria, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.sucursalBancaria = sucursalBancaria;
         this.dc = dc;
@@ -55,14 +55,14 @@ public class CuentaBancaria {
     /**
      * @return the dc
      */
-    public int getDc() {
+    public String getDc() {
         return dc;
     }
 
     /**
      * @param dc the dc to set
      */
-    public void setDc(int dc) {
+    public void setDc(String dc) {
         this.dc = dc;
     }
 
@@ -83,14 +83,14 @@ public class CuentaBancaria {
     /**
      * @return the cif
      */
-    public int getCif() {
+    public String getCif() {
         return cif;
     }
 
     /**
      * @param cif the cif to set
      */
-    public void setCif(int cif) {
+    public void setCif(String cif) {
         this.cif = cif;
     }
 

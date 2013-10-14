@@ -1,7 +1,8 @@
 package Datos;
 
-import Negocio.EntidadBancaria;
+import Negocio.CuentaBancaria;
 import Negocio.TipoEntidadBancaria;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,13 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntidadBancariaDAO {
+public class CuentaBancariaDAO {
     
      ConnectionFactory connectionFactory = new ConnectionFactoryImpDataSource() ; 
 
-    public EntidadBancaria read(int idEntidadBancaria) throws ClassNotFoundException, SQLException {
+    public CuentaBancaria read(int idCuentaBancaria) throws ClassNotFoundException, SQLException {
 
-        EntidadBancaria entidadBancaria;
+        CuentaBancaria cuentaBancaria;
+     //   EntidadBancaria entidadBancaria; 
         
         // Class.forName("com.mysql.jdbc.Driver");         
         //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
@@ -24,9 +26,9 @@ public class EntidadBancariaDAO {
                 
         Connection connection= connectionFactory.getConnection();        
 
-        String selectSQL = "SELECT * FROM entidadbancaria WHERE idEntidad = ?";
+        String selectSQL = "SELECT * FROM cuentaBancaria WHERE idEntidad = ?";
         PreparedStatement preparedStatement =connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
-        preparedStatement.setInt(1, idEntidadBancaria); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
+        preparedStatement.setInt(1, idCuentaBancaria); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
         ResultSet rs = preparedStatement.executeQuery();
 
 //while (rs.next()) {
@@ -34,29 +36,30 @@ public class EntidadBancariaDAO {
 
         if (rs.next() == true) {
             //EL ID YA LO TENGO PASADO EN LA CABECERA !!! String idEntidad = rs.getString("idEntidad");
-            String codigoEntidad = rs.getString("codigoEntidad");
-            String nombre = rs.getString("nombre");
+            //String sucursalBancaria = rs.getString("Sucursal");
+            String tiposucursalBancaria = rs.getString("Sucursal");
+            String numeroCuenta = rs.getString("NumeroCuenta");
+            String dc = rs.getString("dc");
+            BigDecimal saldo = rs.getBigDecimal("Saldo");
             String cif = rs.getString("cif");
-            String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
-
 
             if (rs.next() == true) {
-                throw new RuntimeException("ERROR. Existe mas de una entidad." + idEntidadBancaria);
+                throw new RuntimeException("ERROR. Existe mas de una entidad." + idCuentaBancaria);
             }
 
-            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
-
+            cuentaBancaria = new CuentaBancaria(idCuentaBancaria, null, dc, saldo, cif);
+                    
         } else {
-            throw new RuntimeException("No existe la entidad." + idEntidadBancaria);
+            throw new RuntimeException("No existe la entidad." + idCuentaBancaria);
         }
 
         connection.close();
         System.out.println("Conexion creada con exito y datos mostrados.");
-        return entidadBancaria;
+        return cuentaBancaria;
 
     }
 
-    public void insert(EntidadBancaria entidadBancaria) throws ClassNotFoundException, SQLException {
+    public void insert(CuentaBancaria cuentaBancaria) throws ClassNotFoundException, SQLException {
 
         //Class.forName("com.mysql.jdbc.Driver");
         //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
@@ -68,11 +71,12 @@ public class EntidadBancariaDAO {
                 + "(?,?,?,?,?)";
 
         PreparedStatement preparedStatement2 = connection.prepareStatement(insertTableSQL);
-        preparedStatement2.setInt(1, entidadBancaria.getIdEntidad());
-        preparedStatement2.setString(2, entidadBancaria.getCodigoEntidad());
-        preparedStatement2.setString(3, entidadBancaria.getNombre());
-        preparedStatement2.setString(4, entidadBancaria.getCif());
-        preparedStatement2.setString(5, entidadBancaria.getTipoEntidadBancaria().name()); //name me da el nombre del enum
+        preparedStatement2.setInt(1, cuentaBancaria.getIdCuentaBancaria());
+        preparedStatement2.setString(2, cuentaBancaria.getCif());
+        preparedStatement2.setString(3, cuentaBancaria.getDc());
+        preparedStatement2.setString(4, cuentaBancaria.getSucursalBancaria());
+        preparedStatement2.setString(5, cuentaBancaria.getSaldo());
+        preparedStatement2.setString(6, cuentaBancaria.getTipoEntidadBancaria().name()); //name me da el nombre del enum
 // execute insert SQL stetement
         preparedStatement2.executeUpdate();
 
@@ -81,7 +85,7 @@ public class EntidadBancariaDAO {
 
     }
 
-    public void update(EntidadBancaria entidadBancaria) throws ClassNotFoundException, SQLException {
+    public void update(CuentaBancaria cuentaBancaria) throws ClassNotFoundException, SQLException {
 
        // Class.forName("com.mysql.jdbc.Driver");
         //Connection conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/banco", "root", "root");
@@ -91,7 +95,7 @@ public class EntidadBancariaDAO {
         String updateTableSQL = "UPDATE entidadbancaria SET nombre = ? WHERE identidad = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
         preparedStatement.setString(1, "Santander");
-        preparedStatement.setInt(2, entidadBancaria.getIdEntidad());
+        preparedStatement.setInt(2, cuentaBancaria.getIdEntidad());
 // execute insert SQL stetement
         preparedStatement.executeUpdate();
 
@@ -179,4 +183,13 @@ connection.close();
 
         return listaEntidadesCodigo;
     }
+}
+    
+    
+    
+    
+    
+    
+    
+    
 }
