@@ -179,4 +179,56 @@ connection.close();
 
         return listaEntidadesCodigo;
     }
+    
+    
+     public List<EntidadBancaria> findByNombre(String nombreBusqueda ) throws ClassNotFoundException, SQLException {
+
+        if (nombreBusqueda==null || nombreBusqueda.trim().equals("")){ //trim quita espacios y te evita la comprobacion de comillas 
+         
+        List<EntidadBancaria> listaEntidadesNombre = new ArrayList();
+        EntidadBancaria entidadBancaria;
+        Connection connection= connectionFactory.getConnection();           
+        
+        String selectSQL = "SELECT * FROM entidadbancaria ";
+        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            Integer idEntidadBancaria = rs.getInt("idEntidad");
+            String codigoEntidad = rs.getString("codigoEntidad");
+            String nombre = rs.getString("nombre");
+            String cif = rs.getString("cif");
+            String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
+
+            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
+            listaEntidadesNombre.add(entidadBancaria);
+       }  
+           return listaEntidadesNombre;
+                        
+        }else{
+            
+        List<EntidadBancaria> listaEntidadesNombre = new ArrayList();
+        EntidadBancaria entidadBancaria;
+
+        Connection connection= connectionFactory.getConnection();   
+        
+        String selectSQL = "SELECT * FROM entidadbancaria WHERE nombre like ?";
+         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+        preparedStatement.setString(1, "%"+nombreBusqueda+"%"); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            Integer idEntidadBancaria = rs.getInt("idEntidad");
+            String codigoEntidad = rs.getString("codigoEntidad");
+            String nombre = rs.getString("nombre");
+            String cif = rs.getString("cif");
+            String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
+
+            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
+            listaEntidadesNombre.add(entidadBancaria);
+   
+    }  
+           return listaEntidadesNombre;
+        }
+}
 }

@@ -5,6 +5,7 @@ import java.sql.Connection;
 
 public interface ConnectionFactory {
     
- Connection getConnection();
-    
+ public Connection getConnection();
+
+//public void closeConnection(Connection conexion);
 }
