@@ -1,3 +1,4 @@
+<%@page import="Datos.EntidadBancariaDAOImpJDBC"%>
 <%@page import="java.util.List"%>
 <%@page import="Negocio.EntidadBancaria"%>
 <%@page import="Datos.EntidadBancariaDAO"%>
@@ -5,16 +6,16 @@
 
 <%
        
-EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAO(); //impJDBC
+EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC(); //impJDBC
 
 //EntidadBancaria entidadBancaria =  entidadBancariaDAO.read(1);
 
-List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
+List<EntidadBancaria> entidadesBancarias = entidadBancariaDAOImpJDBC.findAll();
 
 
 String nombre=request.getParameter("nombre");
 
-List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAO.findByNombre(nombre);
+List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAOImpJDBC.findByNombre(nombre);
 
 %>
 
@@ -55,9 +56,7 @@ List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAO.findByNombre
    
             </table>
           
-        </div>
-   
-   
+        </div>  
    
    
   <% out.print(nombre);%>

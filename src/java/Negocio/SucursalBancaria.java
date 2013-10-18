@@ -10,7 +10,7 @@ public class SucursalBancaria {
         
 //Propiedades siempre privadas
     private int idSucursalBancaria;
-    private EntidadBancaria entidadBancaria;
+    private EntidadBancaria entidadBancaria;  //String ???
     private int codigoSucursal;
     private String nombre;
 //Lista ArrayList con las sucursales   

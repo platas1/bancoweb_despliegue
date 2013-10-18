@@ -1,7 +1,5 @@
 package Negocio;
 
-
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +11,7 @@ public class CuentaBancaria {
     private String dc;
     private BigDecimal saldo;
     private String cif;
-    private List<MovimientoBancario> movimientoBancarios=new ArrayList();
+    private List<MovimientoBancario> listaMovimientosBancarios=new ArrayList();
 
     
     public CuentaBancaria(int idCuentaBancaria, SucursalBancaria sucursalBancaria, String dc, BigDecimal saldo, String cif) {
@@ -98,14 +96,14 @@ public class CuentaBancaria {
      * @return the movimientoBancarios
      */
     public List<MovimientoBancario> getMovimientoBancarios() {
-        return movimientoBancarios;
+        return listaMovimientosBancarios;
     }
 
     /**
      * @param movimientoBancarios the movimientoBancarios to set
      */
     public void setMovimientoBancarios(List<MovimientoBancario> movimientoBancarios) {
-        this.movimientoBancarios = movimientoBancarios;
+        this.listaMovimientosBancarios = listaMovimientosBancarios;
     }
 
 

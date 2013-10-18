@@ -11,10 +11,8 @@ public class EntidadBancaria {
     private Integer idEntidad;
     private String codigoEntidad;
     private String nombre;
-//private String codigo;
     private String cif;
     private TipoEntidadBancaria tipoEntidadBancaria;
-//lista de entidades bancarias
     private List<SucursalBancaria> sucursalBancarias=new ArrayList();
 
     //Constructor

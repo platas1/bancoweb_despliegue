@@ -1,6 +1,4 @@
 package Negocio;
-
-
   
     public enum TipoMovimientoBancario{
 Debe,Haber;
@@ -17,6 +15,6 @@ private String TipoMovimientoBancario;
         this.TipoMovimientoBancario = TipoMovimientoBancario;
     }      
         
-    }
+ }
     
 
