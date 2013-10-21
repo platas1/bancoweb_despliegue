@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CuentaBancaria {
+public class CuentaBancaria { //implements serializable // Guarda en disco para hibernate para poder recuperar los datos
     
     private int idCuentaBancaria;
     private SucursalBancaria sucursalBancaria;
