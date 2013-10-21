@@ -203,58 +203,75 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO {
     }
     
     
-     public List<EntidadBancaria> findByNombre(String nombreBusqueda ) throws ClassNotFoundException, SQLException {
-
-        if (nombreBusqueda==null || nombreBusqueda.trim().equals("")){ //trim quita espacios y te evita la comprobacion de comillas 
+     
+     
+     @Override
+     public List<EntidadBancaria> findByNombre(String nombreBusqueda)  {         
          
-        List<EntidadBancaria> listaEntidadesNombre = new ArrayList();
-        EntidadBancaria entidadBancaria;
-        Connection connection= connectionFactory.getConnection();           
-        
-        String selectSQL = "SELECT * FROM entidadbancaria ";
-        PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
-        ResultSet rs = preparedStatement.executeQuery();
+List<EntidadBancaria> listaEntidadesNombre = new ArrayList();                 
+EntidadBancaria entidadBancaria;
+         
 
-        while (rs.next()) {
-            Integer idEntidadBancaria = rs.getInt("idEntidad");
-            String codigoEntidad = rs.getString("codigoEntidad");
-            String nombre = rs.getString("nombre");
-            String cif = rs.getString("cif");
-            String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
+        if (nombreBusqueda==null || nombreBusqueda.trim().equals("")){ try {
+                //trim quita espacios y te evita la comprobacion de comillas 
 
-            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
-            listaEntidadesNombre.add(entidadBancaria);
-       }  
-           return listaEntidadesNombre;
+            
+Connection connection= connectionFactory.getConnection();
+
+String selectSQL = "SELECT * FROM entidadbancaria ";
+PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+ResultSet rs = preparedStatement.executeQuery();
+
+while (rs.next()) {
+Integer idEntidadBancaria = rs.getInt("idEntidad");
+String codigoEntidad = rs.getString("codigoEntidad");
+String nombre = rs.getString("nombre");
+String cif = rs.getString("cif");
+String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
+
+entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
+listaEntidadesNombre.add(entidadBancaria);
+}  
+return listaEntidadesNombre;
+            } catch (SQLException ex) {
+                Logger.getLogger(EntidadBancariaDAOImpJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
                         
         }else{
+
             
-        List<EntidadBancaria> listaEntidadesNombre = new ArrayList();
-        EntidadBancaria entidadBancaria;
+                        try {     
+               // EntidadBancaria entidadBancaria;
 
-        Connection connection= connectionFactory.getConnection();   
-        
-        String selectSQL = "SELECT * FROM entidadbancaria WHERE nombre like ?";
-         PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
-        preparedStatement.setString(1, "%"+nombreBusqueda+"%"); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
-        ResultSet rs = preparedStatement.executeQuery();
+                Connection connection= connectionFactory.getConnection();   
+                
+                String selectSQL = "SELECT * FROM entidadbancaria WHERE nombre like ?";
+                 PreparedStatement preparedStatement = connection.prepareStatement(selectSQL); // Objeto que contine el SQL y los valores incognitas
+                preparedStatement.setString(1, "%"+nombreBusqueda+"%"); //el primer parametro que encuentra se le da el valor de idEntidadBancaria sustituyendose en el where
+                ResultSet rs = preparedStatement.executeQuery();
 
-        while (rs.next()) {
-            Integer idEntidadBancaria = rs.getInt("idEntidad");
-            String codigoEntidad = rs.getString("codigoEntidad");
-            String nombre = rs.getString("nombre");
-            String cif = rs.getString("cif");
-            String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
+                // List<EntidadBancaria> listaEntidadesNombre = new ArrayList();
+                
+                while (rs.next()) {
+                    Integer idEntidadBancaria = rs.getInt("idEntidad");
+                    String codigoEntidad = rs.getString("codigoEntidad");
+                    String nombre = rs.getString("nombre");
+                    String cif = rs.getString("cif");
+                    String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
 
-            entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
-            listaEntidadesNombre.add(entidadBancaria);
-   
-    }  
+                    entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
+                    listaEntidadesNombre.add(entidadBancaria);
+           
+            }  
+            } catch (SQLException ex) {
+                Logger.getLogger(EntidadBancariaDAOImpJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }         
            return listaEntidadesNombre;
-        }
 }
 
-    @Override
+  /* @Override
     public EntidadBancaria read(int idEntidad) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -263,5 +280,5 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO {
     public void delete(int idEntidadBancaria) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+*/
 }

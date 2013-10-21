@@ -20,7 +20,7 @@ public static void main(String[] args) throws Exception{
      Class.forName("com.mysql.jdbc.Driver");
     
    EntidadBancaria entidadBancariaIN = new EntidadBancaria(12,"3","CaixaBank","4444",TipoEntidadBancaria.Banco);
-       EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAO();
+      /* EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAO();
         
        entidadBancariaDAO.read(entidadBancariaIN.getIdEntidad());
        entidadBancariaDAO.insert(entidadBancariaIN);        
@@ -31,7 +31,7 @@ public static void main(String[] args) throws Exception{
        System.out.println(""+entidadBancariaDAO.findAll());
        entidadBancariaDAO.findByCodigo(entidadBancariaIN.getCodigoEntidad());
         
-    
+    */
     EntidadBancaria entidadBancaria1 = new EntidadBancaria(1,"1","Banesto","1",TipoEntidadBancaria.Banco);
     EntidadBancaria entidadBancaria2 = new EntidadBancaria(2,"2","Banesto","2",TipoEntidadBancaria.Banco);
 
@@ -42,8 +42,8 @@ public static void main(String[] args) throws Exception{
        
     BigDecimal a=new BigDecimal("1000");
     BigDecimal b=new BigDecimal("1200");
-    CuentaBancaria cuentaBancaria1= new CuentaBancaria (5,sucursalBancaria1,3,a,6);
-    CuentaBancaria cuentaBancaria2= new CuentaBancaria (12,sucursalBancaria1,3,b,8);
+//    CuentaBancaria cuentaBancaria1= new CuentaBancaria (5,sucursalBancaria1,3,a,6);
+  // CuentaBancaria cuentaBancaria2= new CuentaBancaria (12,sucursalBancaria1,3,b,8);
     
     
   //Crear objeto gregorian calendar  
@@ -52,14 +52,14 @@ public static void main(String[] args) throws Exception{
 
     //Lista en Entidad Bancaria --para-- SucursalBancaria --para-- CuentaBancaria --para-- MovimientoBancario
     
-    List<MovimientoBancario> movimientoBancarios=cuentaBancaria1.getMovimientoBancarios();
+/*    List<MovimientoBancario> movimientoBancarios=cuentaBancaria1.getMovimientoBancarios();
 
    movimientoBancarios.add(movimientoBancario1);  
    movimientoBancarios.add(movimientoBancario2);
       
                System.out.println("Movimientos: "+movimientoBancarios.get(1)+"\n");
      
- imprimeDatosCuentaBancaria(cuentaBancaria1);
+ imprimeDatosCuentaBancaria(cuentaBancaria1);*/
 }     
               
 static void imprimeDatosCuentaBancaria(CuentaBancaria cuentaBancaria){
