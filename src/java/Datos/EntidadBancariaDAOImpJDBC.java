@@ -149,7 +149,7 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO {
                  String nombre = rs.getString("nombre");
                  String cif = rs.getString("cif");
                  String tipoEntidadBancaria = rs.getString("tipoEntidadBancaria");
-
+/////// Falta un if para mirar si son NULL si no dará error !!!!
                  entidadBancaria = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
                  listaEntidades.add(entidadBancaria);
 
