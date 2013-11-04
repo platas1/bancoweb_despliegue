@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    
+    <class name="Negocio.MovimientoBancario" table="movimientobancario" > <!--Hago referencia a la clase en Negocio (uso puntos)-->
+        <id column="idMovimientoBancario" name="idMovimientoBancario" type="integer"/> <!--Clave primaria de la tabla en Heidi -->
+        <property name="tipoMovimientoBancario" /> <!--Campos de la tabla -->
+        <property name="importe" />
+        <property name="fecha" />
+        <property name="saldoTotal" />
+        <property name="concepto" />
+        <!--<property name="tipoEntidadBancaria" />-->
+    </class>
+  
+</hibernate-mapping>
