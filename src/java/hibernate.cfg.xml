@@ -3,10 +3,16 @@
 
 <hibernate-configuration>
     <session-factory>
+        
+        <!-- Propiedades antiguas iguales a las que estan en el context xml crean conexiones sin usar el datasource "a pelo"-->
+        <!--
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="connection.url">jdbc:mysql://localhost/banco</property>
         <property name="connection.username">root</property>
-        <property name="connection.password">root</property>
+        <property name="connection.password">root</property>-->
+        
+        <!--Esta propiedad es para que implemente nuestro data source [pool]-->
+        <property name="hibernate.connection.datasource">java:/comp/env/jdbc/banco</property>
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property> <!--mysql-->
         <property name="hibernate.show_sql">true</property>
 
