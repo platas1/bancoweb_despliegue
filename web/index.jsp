@@ -15,6 +15,7 @@ List<EntidadBancaria> entidadesBancarias = entidadBancariaDAOImpJDBC.findAll();
 
 String nombre=request.getParameter("nombre");
 
+
 List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAOImpJDBC.findByNombre(nombre);
 
 %>
@@ -30,11 +31,17 @@ List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAOImpJDBC.findB
             <table border="solid">
                 
            <% for(EntidadBancaria entidadBancaria:entidadesBancarias){ 
-                %><tr><td><%  out.print(entidadBancaria.getCodigo());%></td>
-                <td><% out.print(entidadBancaria.getCodigoEntidad());%></td>
+                %><tr>  <td><% out.print(entidadBancaria.getIdEntidad());%></td>
+                    <td><%  out.print(entidadBancaria.getCodigo());%></td>
+                                    <td><% out.print(entidadBancaria.getCodigoEntidad());%></td>
                 <td><% out.print(entidadBancaria.getNombre()); %></td>
                 <td><% out.print(entidadBancaria.getCif()); %></td>    
-                <td><% out.print(entidadBancaria.getTipoEntidadBancaria());%></td></tr>
+                <td><% out.print(entidadBancaria.getTipoEntidadBancaria());%></td>
+                
+                <td><a href="Borrar.jsp?idEntidadBancaria=<%=entidadBancaria.getIdEntidad()%>">BORRAR</a>
+                 </td>
+                
+                </tr>
    <% } %>
    
             </table>
@@ -60,5 +67,6 @@ List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAOImpJDBC.findB
    
    
   <% out.print(nombre);%>
+   
     </body>
 </html>
