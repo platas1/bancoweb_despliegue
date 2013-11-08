@@ -93,11 +93,12 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO2222 {
 
             String updateTableSQL = "UPDATE entidadbancaria SET codigoEntidad = ?, nombre = ?, cif = ?,  tipoEntidadBancaria = ? WHERE idEntidad = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
-            preparedStatement.setInt(1, entidadBancaria.getIdEntidad());
-            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
-            preparedStatement.setString(3, entidadBancaria.getNombre());
-            preparedStatement.setString(4, entidadBancaria.getCif());            
-            preparedStatement.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
+            //preparedStatement.setInt(1, entidadBancaria.getIdEntidad());
+            preparedStatement.setString(1, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setString(2, entidadBancaria.getNombre());
+            preparedStatement.setString(3, entidadBancaria.getCif());            
+            preparedStatement.setString(4, entidadBancaria.getTipoEntidadBancaria().name());
+            preparedStatement.setInt(5, entidadBancaria.getIdEntidad());
             // execute insert SQL statement
             preparedStatement.executeUpdate();
 

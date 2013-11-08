@@ -14,10 +14,7 @@
         String codigoEntidad=request.getParameter("codigoEntidad");
         String nombre=request.getParameter("nombre");
         String cif=request.getParameter("cif");
-        /*String tipoEntidadBancaria=request.getParameter("tipoEntidadBancaria");*/
-        
-        
-        //////---- PROBLEMAS JDBC E HIBERNATE EN OTRAS CLASES
+      //String tipoEntidadBancaria=request.getParameter("tipoEntidadBancaria");
         
         EntidadBancaria entidadBancariaActualiza = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.Banco);
         
