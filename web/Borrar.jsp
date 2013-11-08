@@ -4,6 +4,8 @@
     Author     : alumno
 --%>
 
+<%@page import="Datos.EntidadBancariaDAOImpHibernate"%>
+<%@page import="Datos.EntidadBancariaDAOImpHibernate"%>
 <%@page import="Negocio.EntidadBancaria"%>
 <%@page import="java.util.List"%>
 <%@page import="Datos.EntidadBancariaDAOImpJDBC"%>
@@ -11,9 +13,11 @@
 
 
 <%
+    //Podria usar el DAO de JDBC solamente cambiando Hibernate por JDBC
+    //EntidadBancariaDAOImpHibernate entidadBancariaDAOImpHibernate = new EntidadBancariaDAOImpHibernate(); //impJDBC
 
-    EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC(); //impJDBC
-
+     EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC(); //impJDBC
+     
     String idEntidadBancaria = request.getParameter("idEntidadBancaria");
 
     Integer idEntidadBancariaInteger = Integer.parseInt(idEntidadBancaria);
@@ -46,9 +50,6 @@
                     <td><% out.print(entidadBancaria.getCif());%></td>    
                     <td><% out.print(entidadBancaria.getTipoEntidadBancaria());%></td>
 
-                    <!--<td><a href="Borrar.jsp?idEntidadBancaria=<%=entidadBancaria.getCodigoEntidad()%>">BORRAR</a>
-                    </td>-->
-
                 </tr>
                 <% }%>
 
@@ -57,7 +58,7 @@
         </div>   
 
 
-
+<a href="index.jsp">Volver</a>
 
     </body>
 </html>

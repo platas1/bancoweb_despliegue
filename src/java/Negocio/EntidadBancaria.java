@@ -16,6 +16,11 @@ public class EntidadBancaria {
     private List<SucursalBancaria> sucursalBancarias=new ArrayList();
 
     //Constructor
+    //PUEDO CREAR CONSTRUCTORES VACIOS PARA CREAR VALORES POR DEFECTO
+    /*public EntidadBancaria(){
+     this.X=X;
+     * }*/
+    
     public EntidadBancaria(Integer idEntidad, String codigoEntidad, String nombre, String cif, TipoEntidadBancaria tipoEntidadBancaria) {
         this.idEntidad = idEntidad;
         this.codigoEntidad = codigoEntidad;

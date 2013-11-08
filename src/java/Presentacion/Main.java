@@ -1,6 +1,6 @@
 package Presentacion;
 
-import Datos.EntidadBancariaDAO;
+import Datos.EntidadBancariaDAO2222;
 import Negocio.CuentaBancaria;
 import Negocio.EntidadBancaria;
 import Negocio.MovimientoBancario;
