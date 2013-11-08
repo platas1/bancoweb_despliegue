@@ -73,7 +73,7 @@
         <% out.print(nombre);%>
 
         <br></br>
-        <a href="NuevoJSP.jsp">Nuevo_JSP</a><br></br>
+        <a href="ViewforInsert.jsp">Nuevo_JSP</a><br></br>
         <!--<a href="ViewforUpdate.jsp">View For Update</a>-->
     </body>
 </html>

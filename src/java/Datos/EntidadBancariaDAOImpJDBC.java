@@ -91,20 +91,21 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO2222 {
 
             Connection connection = connectionFactory.getConnection();
 
-            String updateTableSQL = "UPDATE entidadbancaria SET nombre = ? codigoEntidad = ? cif = ?  tipoEntidadBancaria = ? WHERE idEntidad = ?";
+            String updateTableSQL = "UPDATE entidadbancaria SET codigoEntidad = ?, nombre = ?, cif = ?,  tipoEntidadBancaria = ? WHERE idEntidad = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(updateTableSQL);
             preparedStatement.setInt(1, entidadBancaria.getIdEntidad());
-            preparedStatement.setString(2, entidadBancaria.getNombre());
-            preparedStatement.setString(3, entidadBancaria.getCif());
-            preparedStatement.setString(4, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setString(2, entidadBancaria.getCodigoEntidad());
+            preparedStatement.setString(3, entidadBancaria.getNombre());
+            preparedStatement.setString(4, entidadBancaria.getCif());            
             preparedStatement.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
-            // execute insert SQL stetement
+            // execute insert SQL statement
             preparedStatement.executeUpdate();
 
             connection.close();
             System.out.println("Conexion creada con exito y datos actualizados.");
         } catch (SQLException ex) {
-            Logger.getLogger(EntidadBancariaDAOImpJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
+            //Logger.getLogger(EntidadBancariaDAOImpJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
