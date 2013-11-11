@@ -7,10 +7,10 @@
 
 <%
 
+  //EntidadBancaria entidadBancaria =  entidadBancariaDAO.read(1);
     EntidadBancariaDAOImpHibernate entidadBancariaDAO = new EntidadBancariaDAOImpHibernate();
     //EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC(); //impJDBC
-//EntidadBancaria entidadBancaria =  entidadBancariaDAO.read(1);
-
+ 
     List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();  //Tambien con JDBC
 
 
@@ -73,6 +73,6 @@
 
         <br></br>
         <a href="ViewforInsert.jsp">Nuevo_JSP</a><br></br>
-        <!--<a href="ViewforUpdate.jsp">View For Update</a>-->
+        <a href="Buscar.jsp">Buscar Por Nombre</a><br></br>
     </body>
 </html>
