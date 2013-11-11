@@ -273,14 +273,4 @@ public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO2222 {
         return listaEntidadesNombre;
     }
 
-    /* @Override
-     public EntidadBancaria read(int idEntidad) {
-     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-     }
-
-     @Override
-     public void delete(int idEntidadBancaria) {
-     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-     }
-     */
 }

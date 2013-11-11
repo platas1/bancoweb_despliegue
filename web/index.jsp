@@ -7,18 +7,17 @@
 
 <%
 
-    EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC(); //impJDBC
+    EntidadBancariaDAOImpHibernate entidadBancariaDAO = new EntidadBancariaDAOImpHibernate();
+    //EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC(); //impJDBC
 //EntidadBancaria entidadBancaria =  entidadBancariaDAO.read(1);
 
-//EntidadBancariaDAOImpHibernate entidadBancariaDAOImpHibernate = new EntidadBancariaDAOImpHibernate();
-
-    List<EntidadBancaria> entidadesBancarias = entidadBancariaDAOImpJDBC.findAll();  //Tambien con JDBC
+    List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();  //Tambien con JDBC
 
 
     String nombre = request.getParameter("nombre");
 
 
-    List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAOImpJDBC.findByNombre(nombre);
+    List<EntidadBancaria> entidadesBancariasNombre = entidadBancariaDAO.findByNombre(nombre);
 
 %>
 

@@ -108,7 +108,7 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
 
         Query query = session.createQuery("SELECT t FROM "+getEntityClass().getName() + " t"); // t misma variable no sabemos lo que devuelve
         List list = query.list();
-        //session.close();
+        //session.close(); 
 
         return list;
     }

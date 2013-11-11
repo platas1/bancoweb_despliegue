@@ -7,9 +7,8 @@
         
 
 <% //CONTROLADOR
-       // EntidadBancariaDAOImpHibernate entidadBancariaDAOImpHibernate = new EntidadBancariaDAOImpHibernate(); //impJDBC
-        
-        EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC();
+          EntidadBancariaDAOImpHibernate entidadBancariaDAO = new EntidadBancariaDAOImpHibernate(); //impJDBC
+          //EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC();
         
         String idEntidad=request.getParameter("idEntidad");        
         Integer idEntidadBancaria = Integer.parseInt(idEntidad);
@@ -24,9 +23,9 @@
         
         EntidadBancaria entidadBancariaInserta = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.Banco);
         
-        entidadBancariaDAOImpJDBC.insert(entidadBancariaInserta);
+        entidadBancariaDAO.insert(entidadBancariaInserta);
         
-        List<EntidadBancaria> entidadesBancarias = entidadBancariaDAOImpJDBC.findAll();
+        List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
         %>
         
 <!DOCTYPE html  VISTA>

@@ -1,12 +1,12 @@
+<%@page import="Datos.EntidadBancariaDAOImpHibernate"%>
 <%@page import="java.util.List"%>
 <%@page import="Negocio.TipoEntidadBancaria"%>
 <%@page import="Negocio.EntidadBancaria"%>
 <%@page import="Datos.EntidadBancariaDAOImpJDBC"%>
 
 <% //CONTROLADOR
-       // EntidadBancariaDAOImpHibernate entidadBancariaDAOImpHibernate = new EntidadBancariaDAOImpHibernate(); //impJDBC
-        
-        EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC();
+        EntidadBancariaDAOImpHibernate entidadBancariaDAO = new EntidadBancariaDAOImpHibernate(); //impJDBC
+       //   EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC();
         
         String idEntidad=request.getParameter("idEntidadBancaria");        
         Integer idEntidadBancaria = Integer.parseInt(idEntidad);

@@ -14,17 +14,16 @@
 
 <%
     //Podria usar el DAO de JDBC solamente cambiando Hibernate por JDBC
-    //EntidadBancariaDAOImpHibernate entidadBancariaDAOImpHibernate = new EntidadBancariaDAOImpHibernate(); //impJDBC
-
-     EntidadBancariaDAOImpJDBC entidadBancariaDAOImpJDBC = new EntidadBancariaDAOImpJDBC(); //impJDBC
+    EntidadBancariaDAOImpHibernate entidadBancariaDAO = new EntidadBancariaDAOImpHibernate(); //impJDBC
+  //EntidadBancariaDAOImpJDBC entidadBancariaDAO = new EntidadBancariaDAOImpJDBC(); //impJDBC
      
     String idEntidadBancaria = request.getParameter("idEntidadBancaria");
 
     Integer idEntidadBancariaInteger = Integer.parseInt(idEntidadBancaria);
 
-    entidadBancariaDAOImpJDBC.delete(idEntidadBancariaInteger);
+    entidadBancariaDAO.delete(idEntidadBancariaInteger);
 
-    List<EntidadBancaria> entidadesBancarias = entidadBancariaDAOImpJDBC.findAll();
+    List<EntidadBancaria> entidadesBancarias = entidadBancariaDAO.findAll();
 
 %>
 
