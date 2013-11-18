@@ -14,9 +14,11 @@
         String codigoEntidad=request.getParameter("codigoEntidad");
         String nombre=request.getParameter("nombre");
         String cif=request.getParameter("cif");
-      //String tipoEntidadBancaria=request.getParameter("tipoEntidadBancaria");
-        
-        EntidadBancaria entidadBancariaActualiza = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.Banco);
+                
+        String tipoEntidadBancariaString=request.getParameter("tipoEntidadBancaria");
+        TipoEntidadBancaria tipoEntidadBancaria= TipoEntidadBancaria.valueOf(tipoEntidadBancariaString);
+  
+        EntidadBancaria entidadBancariaActualiza = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, tipoEntidadBancaria);
         
         entidadBancariaDAO.update(entidadBancariaActualiza);
         

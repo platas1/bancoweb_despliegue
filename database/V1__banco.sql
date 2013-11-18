@@ -47,15 +47,17 @@ CREATE TABLE IF NOT EXISTS `entidadbancaria` (
   PRIMARY KEY (`idEntidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla banco.entidadbancaria: ~6 rows (aproximadamente)
+-- Volcando datos para la tabla banco.entidadbancaria: ~8 rows (aproximadamente)
 DELETE FROM `entidadbancaria`;
 /*!40000 ALTER TABLE `entidadbancaria` DISABLE KEYS */;
 INSERT INTO `entidadbancaria` (`idEntidad`, `codigoEntidad`, `nombre`, `cif`, `tipoEntidadBancaria`) VALUES
 	(1, '2', 'banesto', '131313', 'Caja'),
-	(2, '3', 'KutxaBank', '4444', 'Banco'),
-	(11, '3', 'Caixa', '3333', 'Banco'),
-	(15, '7', 'Deutche Bank', '5555', 'Banco'),
-	(16, '3', 'KutxaBank', '4444', 'Caja'),
+	(2, '5', 'CaixaGalicia', '3336', 'Banco'),
+	(9, '7', 'Deutche Bank', '5555', 'Banco'),
+	(15, '41', 'Caja Sol', '6872', 'Banco'),
+	(16, '3', 'HispanoMano', '4444', 'Banco'),
+	(556, '22', 'Santander', '874', 'Caja'),
+	(874, '5431', 'PacoBank', '3654', 'Banco'),
 	(1001, '1', 'bankia', '1111', 'Banco');
 /*!40000 ALTER TABLE `entidadbancaria` ENABLE KEYS */;
 

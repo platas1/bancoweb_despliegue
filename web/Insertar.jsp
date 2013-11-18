@@ -16,12 +16,12 @@
         String codigoEntidad=request.getParameter("codigoEntidad");
         String nombre=request.getParameter("nombre");
         String cif=request.getParameter("cif");
-        /*String tipoEntidadBancaria=request.getParameter("tipoEntidadBancaria");*/
-        
+        String tipoEntidadBancariaString=request.getParameter("tipoEntidadBancaria");
+        TipoEntidadBancaria tipoEntidadBancaria= TipoEntidadBancaria.valueOf(tipoEntidadBancariaString);
         
         //////---- PROBLEMAS JDBC E HIBERNATE EN OTRAS CLASES
         
-        EntidadBancaria entidadBancariaInserta = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, TipoEntidadBancaria.Banco);
+        EntidadBancaria entidadBancariaInserta = new EntidadBancaria(idEntidadBancaria, codigoEntidad, nombre, cif, tipoEntidadBancaria );
         
         entidadBancariaDAO.insert(entidadBancariaInserta);
         

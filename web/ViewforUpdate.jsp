@@ -1,3 +1,4 @@
+<%@page import="Negocio.TipoEntidadBancaria"%>
 <%@page import="Negocio.EntidadBancaria"%>
 <%@page import="Datos.EntidadBancariaDAOImpJDBC"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -29,10 +30,16 @@
             <input type="text" name="codigoEntidad" value="<% out.print(entidadbancaria.getCodigoEntidad());%>"/>
             <input type="text" name="nombre" value="<% out.print(entidadbancaria.getNombre());%>"/>
             <input type="text" name="cif" value="<% out.print(entidadbancaria.getCif());%>"/>
-            <!--<input type="text" name="tipoEntidadBancaria" value="<% out.print(entidadbancaria.getTipoEntidadBancaria());%>"/>   -->
-            <input type="submit"/>
-        </form>
-        
+     
+            <select name="tipoEntidadBancaria">
+            <option selected>--- Elige un tipo Entidad ---</option>
+            <option value="<%=TipoEntidadBancaria.Caja.name() %>">Caja de ahorros</option>
+            <option><%=TipoEntidadBancaria.Banco.name()%></option>
+    </select>
+
+    <input type="submit"/>
+    
+        </form>        
         
         <p></p>
             <p><% out.print(entidadbancaria.getCodigo());%></p>
