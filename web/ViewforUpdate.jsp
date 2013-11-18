@@ -32,7 +32,7 @@
             <input type="text" name="cif" value="<% out.print(entidadbancaria.getCif());%>"/>
      
             <select name="tipoEntidadBancaria">
-            <option selected>--- Elige un tipo Entidad ---</option>
+            <option selected><%=entidadbancaria.getTipoEntidadBancaria()%></option>
             <option value="<%=TipoEntidadBancaria.Caja.name() %>">Caja de ahorros</option>
             <option><%=TipoEntidadBancaria.Banco.name()%></option>
     </select>
