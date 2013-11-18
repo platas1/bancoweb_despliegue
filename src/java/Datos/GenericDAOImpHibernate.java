@@ -14,14 +14,14 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
     private SessionFactory sessionFactory;
 
     public GenericDAOImpHibernate(/*SessionFactory sessionFactory*/) {
-       this.sessionFactory= HibernateUtil.getSessionFactory();
-    // this.sessionFactory = sessionFactory; ANTIGUO!!!, LE PASABAMOS EL PARAMETRO sessionFactory EN EL METODO
+        this.sessionFactory = HibernateUtil.getSessionFactory();
+        // this.sessionFactory = sessionFactory; ANTIGUO!!!, LE PASABAMOS EL PARAMETRO sessionFactory EN EL METODO
     }
 
     @Override
     public T read(ID id) {
         Session session = sessionFactory.getCurrentSession();
-        
+
         T t;
 
         try {
@@ -33,7 +33,7 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
             throw new RuntimeException(ex);
         } finally {
             if ((session != null) && (session.isConnected() == true)) {
-               // session.close(); // Las sesiones no se cierran aqui, se cierran fuera !! Aqui solo con try/catch
+                // session.close(); // Las sesiones no se cierran aqui, se cierran fuera !! Aqui solo con try/catch
             }
         }
 
@@ -106,21 +106,21 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
 
         Session session = sessionFactory.getCurrentSession();
 
-        Query query = session.createQuery("SELECT t FROM "+getEntityClass().getName() + " t"); // t misma variable no sabemos lo que devuelve
+        Query query = session.createQuery("SELECT t FROM " + getEntityClass().getName() + " t"); // t misma variable no sabemos lo que devuelve
         List list = query.list();
         //session.close(); 
 
         return list;
     }
 
-   /* OJO NO VA AQUI*/
-     public List<T> findByCodigo(String codigo) {
+    /* OJO NO VA AQUI*/
+    public List<T> findByCodigo(String codigo) {
 
         Session session = sessionFactory.getCurrentSession();
 
         //List<T> list = new ArrayList();
 
-        Query query = session.createQuery("SELECT entidadbancaria FROM "+getEntityClass().getName()+" WHERE codigo=?");
+        Query query = session.createQuery("SELECT entidadbancaria FROM " + getEntityClass().getName() + " WHERE codigo=?");
         query.setString(0, codigo);
         List list = query.list();
         //session.close();
@@ -131,14 +131,16 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
     public List<T> findByNombre(String nombreBusqueda) {
         Session session = sessionFactory.openSession();
 
-        Query query = session.createQuery("SELECT entidadbancaria FROM "+getEntityClass().getName()+" entidadbancaria WHERE nombre LIKE ?");
+        if (nombreBusqueda == null) {
+            nombreBusqueda = "";
+        }
+        Query query = session.createQuery("SELECT entidadbancaria FROM " + getEntityClass().getName() + " entidadbancaria WHERE nombre LIKE ?");
         query.setString(0, "%" + nombreBusqueda + "%");
         List list = query.list();
         //session.close();
-
         return list;
     }
-
+    
     private Class<T> getEntityClass() {
         return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }

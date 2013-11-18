@@ -6,7 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
- public class EntidadBancariaDAOImpHibernate extends GenericDAOImpHibernate<EntidadBancaria,Integer> implements EntidadBancariaDAO2222 {
+ public class EntidadBancariaDAOImpHibernate extends GenericDAOImpHibernate<EntidadBancaria,Integer> implements EntidadBancariaDAO/*2222*/ {
 /*No deben estar aqui*/
      
      ///GenericDAOImpHibernate genericDAOHibernate = new GenericDAOImpHibernate();
