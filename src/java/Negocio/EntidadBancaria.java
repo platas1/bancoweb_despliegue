@@ -2,10 +2,11 @@ package Negocio;
 
 
 
+import java.io.Serializable;  //serializable?
 import java.util.ArrayList;
 import java.util.List;
 
-public class EntidadBancaria {
+public class EntidadBancaria implements Serializable { //serializable por si falla
     
 //Propiedades siempre privadas
     private Integer idEntidad;
