@@ -25,13 +25,21 @@ public class EntidadBancariaController {
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.GET)
     public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad) throws IOException {
 
+        try{
         //EntidadBancaria entidadBancaria = new EntidadBancariaDAOImpHibernate().read(idEntidad);
         EntidadBancaria entidadBancaria = entidadBancariaDAO.read(idEntidad); //creo variable para pasarla abajo
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(entidadBancaria); //Aqui la variable creada
         httpServletResponse.setContentType("application/json; charset=UTF-8");
         httpServletResponse.getWriter().println(json);
-
+        } catch (Exception ex) {
+            httpServletResponse.setContentType("text/plain; charset=UTF-8");
+            httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            try {
+                ex.printStackTrace(httpServletResponse.getWriter());
+            } catch (IOException ex1) {
+                //Capturamos el error de si da error mostrar el error !!! LOL
+            }
     }
 
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.DELETE)
