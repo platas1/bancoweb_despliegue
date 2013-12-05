@@ -40,6 +40,7 @@ public class EntidadBancariaController {
             } catch (IOException ex1) {
                 //Capturamos el error de si da error mostrar el error !!! LOL
             }
+        }
     }
 
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.DELETE)
