@@ -34,7 +34,7 @@
             <select name="tipoEntidadBancaria">
             <option selected><%=entidadbancaria.getTipoEntidadBancaria()%></option>
             <option value="<%=TipoEntidadBancaria.Caja.name() %>">Caja de ahorros</option>
-            <option><%=TipoEntidadBancaria.Banco.name()%></option>
+            <option>value="<%=TipoEntidadBancaria.Banco.name()%>">Banco</option>
     </select>
 
     <input type="submit"/>

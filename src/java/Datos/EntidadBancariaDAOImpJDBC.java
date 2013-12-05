@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author alumno
  */
-public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO2222 {
+public class EntidadBancariaDAOImpJDBC implements EntidadBancariaDAO {
 
     ConnectionFactory connectionFactory = new ConnectionFactoryImpDataSource();
 

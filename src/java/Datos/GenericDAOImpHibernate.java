@@ -12,7 +12,8 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
 
     // """ Inicializamos Hibernate"""
     private SessionFactory sessionFactory;
-
+    
+    // estas lineas sobran cuando usemos spring
     public GenericDAOImpHibernate(/*SessionFactory sessionFactory*/) {
         this.sessionFactory = HibernateUtil.getSessionFactory();
         // this.sessionFactory = sessionFactory; ANTIGUO!!!, LE PASABAMOS EL PARAMETRO sessionFactory EN EL METODO
