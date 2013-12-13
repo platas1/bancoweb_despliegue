@@ -5,14 +5,27 @@ package Negocio;
 import java.io.Serializable;  //serializable?
 import java.util.ArrayList;
 import java.util.List;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 public class EntidadBancaria implements Serializable { //serializable por si falla
     
 //Propiedades siempre privadas
     private Integer idEntidad;
+    
+    @Pattern(regexp="[0-9]{4}")
+    @NotBlank
     private String codigoEntidad;
-    private String nombre;
-    private String cif;
+    
+    @Size(min = 3, max = 30)
+    @NotBlank
+    private String nombre;    
+       
+    @Pattern(regexp="[0-9]{5}")
+    @NotBlank
+    private String cif;    
+    
     private TipoEntidadBancaria tipoEntidadBancaria;
     private List<SucursalBancaria> sucursalBancarias=new ArrayList();
 
@@ -60,21 +73,23 @@ public class EntidadBancaria implements Serializable { //serializable por si fal
     public void setCodigoEntidad(String codigoEntidad) {
         this.codigoEntidad = codigoEntidad;
     }
-
+//------------------------------------------------
+    //CODIGO INUTIL//
     /**
      * @return the codigo
      */
-    public String getCodigo() {
+    /*public String getCodigo() {
         return getNombre();
     }
-
+*/
     /**
      * @param codigo the codigo to set
      */
-    public void setCodigo(String codigo) {
+  /*  public void setCodigo(String codigo) {
         this.setNombre(codigo);
     }
-
+*///-------------------------------------
+    
     /**
      * @return the cif
      */

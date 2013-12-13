@@ -1,6 +1,5 @@
 package Datos;
 
-import Negocio.EntidadBancaria;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -50,7 +49,10 @@ public class GenericDAOImpHibernate<T, ID extends Serializable> implements Gener
             session.beginTransaction();
             session.save(t);
             session.getTransaction().commit();
-        } catch (Exception ex) {
+        } catch (RuntimeException ex) {
+            session.getTransaction().rollback();
+            throw ex;
+        }catch (Exception ex) {
             session.getTransaction().rollback();
             throw new RuntimeException(ex);
         } finally {

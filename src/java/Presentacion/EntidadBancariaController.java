@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +25,6 @@ public class EntidadBancariaController {
     //Estas son las dos entidades creadas con Autowired , se hace con autowired applicationContext
     // estas son las dos entidades entidadBancaria que he comentado en la clase delete y read
 
-    
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.GET)
     public void read(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad) throws IOException {
 
@@ -49,7 +50,6 @@ public class EntidadBancariaController {
         }
     }
 
-    
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.DELETE)
     public void delete(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad) {
 
@@ -71,7 +71,6 @@ public class EntidadBancariaController {
             }
         }
     }
-    
 
     @RequestMapping(value = {"/EntidadBancaria"}, method = RequestMethod.GET)
     public void find(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse/*, @PathVariable("idEntidad") int idEntidad*/) throws IOException {
@@ -97,7 +96,6 @@ public class EntidadBancariaController {
             }
         }
     }
-    
 
     @RequestMapping(value = {"/EntidadBancaria"}, method = RequestMethod.POST)
     public void insert(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, /*@PathVariable("idEntidad") int idEntidad,*/ @RequestBody String json) {
@@ -116,6 +114,17 @@ public class EntidadBancariaController {
             json = objectMapper.writeValueAsString(entidadBancaria); //Aqui la variable creada
             httpServletResponse.getWriter().println(json);
 
+
+            //----Prueba Errores de JAVAX
+
+        } catch (ConstraintViolationException cve) {
+            for (ConstraintViolation constraintViolation : cve.getConstraintViolations()) {
+                System.out.println("En el campo '" + constraintViolation.getPropertyPath() + "':" + constraintViolation.getMessage());
+            }
+            
+            /*----------------------*/
+
+
         } catch (Exception ex) {
             httpServletResponse.setContentType("text/plain; charset=UTF-8");
             httpServletResponse.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
@@ -127,7 +136,6 @@ public class EntidadBancariaController {
         }
     }
 
-    
     @RequestMapping(value = {"/EntidadBancaria/{idEntidad}"}, method = RequestMethod.PUT)
     public void update(HttpServletRequest httpRequest, HttpServletResponse httpServletResponse, @PathVariable("idEntidad") int idEntidad, @RequestBody String json) {
 
@@ -142,7 +150,6 @@ public class EntidadBancariaController {
 
             //Cambio los valores que ya estan guardados por los que me han pasado en le json
             entidadBancariaUpdate.setNombre(entidadBancaria.getNombre());
-            entidadBancariaUpdate.setCodigo(entidadBancaria.getCodigo());
             entidadBancariaUpdate.setCif(entidadBancaria.getCif());
             entidadBancariaUpdate.setCodigoEntidad(entidadBancaria.getCodigoEntidad());
             entidadBancariaUpdate.setTipoEntidadBancaria(entidadBancaria.getTipoEntidadBancaria());
