@@ -12,6 +12,8 @@ import javax.sql.DataSource;
 public class ConnectionFactoryImpDataSource implements ConnectionFactory{
  
   
+       // NO HACER EL LOGGER LANZAR LA EXCEPCION !!!!!!!!
+    
   @Override
   public Connection getConnection() {
    
@@ -21,7 +23,7 @@ public class ConnectionFactoryImpDataSource implements ConnectionFactory{
       } catch (NamingException ex) {
           Logger.getLogger(ConnectionFactoryImpDataSource.class.getName()).log(Level.SEVERE, null, ex);
       }
-   
+
       
    Context envContext = null;
       try {

@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 
 public class ConnectionFactoryImplJDBC implements ConnectionFactory {
 
+       // NO HACER EL LOGGER LANZAR LA EXCEPCION !!!!!!!!
+    
     @Override
     public Connection getConnection() {
         

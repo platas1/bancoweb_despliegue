@@ -18,6 +18,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -26,28 +27,22 @@
         
                 
         <form METHOD="Get" ACTION="http://localhost:8084/BancoWeb/Update.jsp">
-            <input type="text" name="idEntidadBancaria"  readonly="readonly" value="<% out.print(entidadbancaria.getIdEntidad());%>"/>
-            <input type="text" name="codigoEntidad" value="<% out.print(entidadbancaria.getCodigoEntidad());%>"/>
-            <input type="text" name="nombre" value="<% out.print(entidadbancaria.getNombre());%>"/>
-            <input type="text" name="cif" value="<% out.print(entidadbancaria.getCif());%>"/>
+            <input class="btn btn-success" type="text" name="idEntidadBancaria"  readonly="readonly" value="<% out.print(entidadbancaria.getIdEntidad());%>"/>
+            <input class="btn btn-success" type="text" name="codigoEntidad" value="<% out.print(entidadbancaria.getCodigoEntidad());%>"/>
+            <input class="btn btn-success" type="text" name="nombre" value="<% out.print(entidadbancaria.getNombre());%>"/>
+            <input class="btn btn-success" type="text" name="cif" value="<% out.print(entidadbancaria.getCif());%>"/>
      
-            <select name="tipoEntidadBancaria">
+            <select class="btn btn-success" name="tipoEntidadBancaria">
             <option selected><%=entidadbancaria.getTipoEntidadBancaria()%></option>
             <option value="<%=TipoEntidadBancaria.Caja.name() %>">Caja de ahorros</option>
-            <option>value="<%=TipoEntidadBancaria.Banco.name()%>">Banco</option>
+            <option value="<%=TipoEntidadBancaria.Banco.name()%>">Banco</option>
     </select>
 
-    <input type="submit"/>
+    <input class="btn btn-primary" type="submit"/>
     
         </form>        
-        
-        <p></p>
-            <p><% out.print(entidadbancaria.getCodigo());%></p>
-                <p><% out.print(entidadbancaria.getCodigoEntidad());%></p>
-                    <p><% out.print(entidadbancaria.getCif());%></p>
-       
-
-        <a href="index.jsp">INDEX</a> 
+    <br>
+        <a class="btn btn-info" href="index.jsp">INDEX</a> 
         
         
     </body>

@@ -44,7 +44,6 @@
 
                 <% for (EntidadBancaria entidadBancaria : entidadesBancarias) {
                 %><tr><td><%  out.print(entidadBancaria.getCodigoEntidad());%></td>
-                    <td><% out.print(entidadBancaria.getCodigo());%></td>
                     <td><% out.print(entidadBancaria.getNombre());%></td>
                     <td><% out.print(entidadBancaria.getCif());%></td>    
                     <td><% out.print(entidadBancaria.getTipoEntidadBancaria());%></td>
