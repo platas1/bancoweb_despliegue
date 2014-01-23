@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `cuentabancaria` (
   PRIMARY KEY (`idCuentaBancaria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla banco.cuentabancaria: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla banco.cuentabancaria: ~0 rows (aproximadamente)
 DELETE FROM `cuentabancaria`;
 /*!40000 ALTER TABLE `cuentabancaria` DISABLE KEYS */;
 INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `sucursalBancaria`, `numeroCuenta`, `dc`, `saldo`, `cif`) VALUES
@@ -39,30 +39,26 @@ INSERT INTO `cuentabancaria` (`idCuentaBancaria`, `sucursalBancaria`, `numeroCue
 -- Volcando estructura para tabla banco.entidadbancaria
 DROP TABLE IF EXISTS `entidadbancaria`;
 CREATE TABLE IF NOT EXISTS `entidadbancaria` (
-  `idEntidad` int(11) NOT NULL AUTO_INCREMENT,
+  `idEntidad` int(11) NOT NULL,
   `codigoEntidad` varchar(50) DEFAULT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `cif` varchar(50) DEFAULT NULL,
   `tipoEntidadBancaria` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`idEntidad`),
-  UNIQUE KEY `codigoEntidad` (`codigoEntidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=11874 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idEntidad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Volcando datos para la tabla banco.entidadbancaria: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla banco.entidadbancaria: ~8 rows (aproximadamente)
 DELETE FROM `entidadbancaria`;
 /*!40000 ALTER TABLE `entidadbancaria` DISABLE KEYS */;
 INSERT INTO `entidadbancaria` (`idEntidad`, `codigoEntidad`, `nombre`, `cif`, `tipoEntidadBancaria`) VALUES
-	(1, '2222', 'banesto', '13131', 'Caja'),
-	(2, '5555', 'CaixaGalicia', '33363', 'Banco'),
-	(9, '7777', 'Deutche Bank', '55555', 'Banco'),
-	(13, '5252', 'CaixaGalicia', '31363', 'Banco'),
-	(14, '1522', 'PostABank', '31373', 'Caja'),
-	(15, '4141', 'Caja Sol', '68726', 'Banco'),
-	(19, '2212', 'banesto', '13131', 'Caja'),
-	(83, '9898', 'Caja Cajona', '73277', 'Caja'),
-	(267, '7979', 'LorenBank', '35578', 'Caja'),
-	(3813, '5835', 'Bankia', '84123', 'Caja'),
-	(11873, '8282', 'KikeBank', '98381', 'Banco');
+	(1, '2', 'banesto', '131313', 'Caja'),
+	(2, '5', 'CaixaGalicia', '3336', 'Banco'),
+	(9, '7', 'Deutche Bank', '5555', 'Banco'),
+	(15, '41', 'Caja Sol', '6872', 'Banco'),
+	(16, '3', 'HispanoMano', '4444', 'Banco'),
+	(556, '22', 'Santander', '874', 'Caja'),
+	(874, '5431', 'PacoBank', '3654', 'Banco'),
+	(1001, '1', 'bankia', '1111', 'Banco');
 /*!40000 ALTER TABLE `entidadbancaria` ENABLE KEYS */;
 
 
